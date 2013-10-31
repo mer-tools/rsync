@@ -1,11 +1,12 @@
 Name:       rsync
 Summary:    A program for synchronizing files over a network
-Version:    3.1.0
-Release:    1
+Version: 3.1.0
+Release: 1
 Group:      Applications/Internet
 License:    GPLv3+
 URL:        http://rsync.samba.org/
 Source0:    http://rsync.samba.org/ftp/rsync/src/rsync-%{version}.tar.gz
+Patch1:	0001-mer-tools-Add-pre-generated-man-pages-and-mer-xinetd.patch
 BuildRequires:  pkgconfig(popt)
 BuildRequires:  libacl-devel
 BuildRequires:  libattr-devel
@@ -29,7 +30,10 @@ Requires:   %{name} = %{version}-%{release}
 Support files for rsync
 
 %prep
-%setup -q -n %{name}-%{version}
+# Adjusting %%setup since git-pkg unpacks to src/
+# %%setup -q -n %%{name}-%%{version}
+%setup -q -n src
+%patch1 -p1
 
 %build
 
