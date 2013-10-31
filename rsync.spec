@@ -38,7 +38,7 @@ Support files for rsync
 %build
 
 %configure
-make %{?jobs:-j%jobs}
+make %{_smp_mflags}
 
 %install
 rm -rf %{buildroot}
